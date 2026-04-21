@@ -1,21 +1,11 @@
-animals = ["кот","слон","пёс","тигр","лиса"]
+import requests
 
-for i in range(1, 11):
-    print(i**2)
+request = requests.get('https://httpbin.org/get')
+print(request.status_code)
+print(request.headers)
+print(request.json())
 
-for i in range(1,20):
-    if i % 2 == 0:
-        print(i)
-
-for word in animals:
-    if len(word)>4:
-        print(word)
-
-test1 = [i**2 for i in range(1,11)]
-print(test1)
-
-testik= [i for i in range(1,21) if i%2 == 0]
-print(testik)
-
-testovik=[word for word in animals if len(word)>4]
-print(testovik)
+try:
+    request1 = requests.get('https://notwork.xuy')
+except requests.exceptions.ConnectionError:
+    print('Данный сайт недоступен')
