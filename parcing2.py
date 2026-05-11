@@ -1,12 +1,10 @@
 import requests
-from collections import Counter
 
-url = 'https://jsonplaceholder.typicode.com/posts'
-r = requests.get(url)
-posts = r.json()
+# Без заголовка — как бот
+r1 = requests.get('https://quotes.toscrape.com')
+print('Без заголовка:', r1.status_code)
 
-users = [t['userId'] for t in posts]
-topchik = Counter(users).most_common(1)
-user3 = [t['title'] for t in posts if t['userId'] == 3]
-
-print(topchik)
+# С заголовком — притворяемся браузером
+headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'}
+r2 = requests.get('https://quotes.toscrape.com', headers=headers)
+print('С заголовком:', r2.status_code)
